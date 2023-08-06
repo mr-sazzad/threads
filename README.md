@@ -4,7 +4,7 @@
 ###### Language
 
 ```css
-javascript
+javascript : ok
 typescript
 ```
 
