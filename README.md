@@ -3,19 +3,19 @@
 ```css
 LANGUAGES
 
-javascript : ok
+javascript
 typescript
-
+-----------------------------
 FREAMWARK
 
 😊 nextjs
-
-CSS fREAMWARK
+-----------------------------
+CSS FREAMWARK
 
 tailwind css
 chad cn
 tailwindcss animation
-
+-----------------------------
 OTHERS
 
 @clerk/next
@@ -23,5 +23,5 @@ react-hook-form
 zod //for validation
 
 ```
-
+-----------------------------
 
