@@ -20,8 +20,15 @@ OTHERS
 
 @clerk/next
 react-hook-form
-zod //for validation
+zod
 
 ```
 -----------------------------
+
+1. @clerk/next
+   
+```bash
+npm i @clerk/next
+go to https://clerk.com/docs/nextjs/get-started-with-nextjs
+```
 
