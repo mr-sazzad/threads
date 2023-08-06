@@ -2,17 +2,17 @@
 
 
 ###### Language
-```css
+
+```bash
 /* CSS code */
 body {
 background-color: #FF5733;
 color: #FFFFFF;
 }
-<body>
 javascript
 typescript
-</body>
 ```
+
 
 ###### Freamwark
 ```bash
