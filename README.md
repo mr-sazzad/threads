@@ -1,19 +1,23 @@
 ## 👋 Hi There
 
 ```css
+LANGUAGES
 
 javascript : ok
 typescript
 
-###### Freamwark
+FREAMWARK
+
 😊 nextjs
 
-###### Css freamwark
+CSS fREAMWARK
+
 tailwind css
 chad cn
 tailwindcss animation
 
-###### others 
+OTHERS
+
 @clerk/next
 react-hook-form
 zod //for validation
