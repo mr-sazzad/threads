@@ -3,8 +3,7 @@
 
 ###### Language
 
-```bash
-/* CSS code */
+```css
 body {
 background-color: #FF5733;
 color: #FFFFFF;
