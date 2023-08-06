@@ -4,10 +4,6 @@
 ###### Language
 
 ```css
-body {
-background-color: #FF5733;
-color: #FFFFFF;
-}
 javascript
 typescript
 ```
