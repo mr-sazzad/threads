@@ -24,7 +24,7 @@ zod
 
 ```
 
-<p class="center">UPLOADTHING IMAGE UPLOAD PART</p>
+ <p align="center">- 🌱 UPLOADTHING IMAGE UPLOAD PART</p>
 
 
 
