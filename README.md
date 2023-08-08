@@ -23,11 +23,10 @@ react-hook-form
 zod
 
 ```
------------------------------
 
 
 ```ts
-// app/utils/uploadthing.ts
+// app/utils/uploadthing.ts 🥗
 
 import { generateReactHelpers } from "@uploadthing/react/hooks";
  
@@ -39,7 +38,7 @@ generateReactHelpers<OurFileRouter>();
 ```
 
 ```ts
-// app/api/uploadthing/core.ts
+// app/api/uploadthing/core.ts 🥗
 
 import { createUploadthing, type FileRouter } from "uploadthing/next";
  
@@ -70,6 +69,20 @@ export const ourFileRouter = {
  
 export type OurFileRouter = typeof ourFileRouter;
 
+```
+
+```ts
+// app/api/uploadthing/route.ts 🥗
+
+
+import { createNextRouteHandler } from "uploadthing/next";
+ 
+import { ourFileRouter } from "./core";
+ 
+// Export routes for Next App Router
+export const { GET, POST } = createNextRouteHandler({
+  router: ourFileRouter,
+});
 ```
 
 1. @clerk/next
