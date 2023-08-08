@@ -13,8 +13,10 @@ import {
 } from "../ui/form";
 import { Textarea } from "../ui/textarea";
 
+import { CreateThread } from "@/lib/actions/threads.actions";
 import { ThreadsValidation } from "@/lib/validations/threads";
 import { usePathname, useRouter } from "next/navigation";
+import * as z from "zod";
 
 export const PostThreads = ({ userId }: { userId: string }) => {
   const pathname = usePathname();
@@ -28,8 +30,15 @@ export const PostThreads = ({ userId }: { userId: string }) => {
     },
   });
 
-  const onSubmit = () => {
-    console.log("Hello");
+  const onSubmit = async (values: z.infer<typeof ThreadsValidation>) => {
+    await CreateThread({
+      text: values.thread,
+      author: userId,
+      communityId: null,
+      path: pathname,
+    });
+
+    router.push("/");
   };
 
   return (

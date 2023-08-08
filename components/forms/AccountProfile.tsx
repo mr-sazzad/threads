@@ -203,6 +203,7 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
                   cols={30}
                   className="no-focus 
                   account-form_input"
+                  {...field}
                 />
               </FormControl>
               <FormMessage />
