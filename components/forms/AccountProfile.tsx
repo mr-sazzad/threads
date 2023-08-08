@@ -8,7 +8,14 @@ import { ChangeEvent, useState } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { Button } from "../ui/button";
-import { Form, FormControl, FormField, FormItem, FormLabel } from "../ui/form";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "../ui/form";
 import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
 
@@ -157,6 +164,7 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
                   {...field}
                 />
               </FormControl>
+              <FormMessage />
             </FormItem>
           )}
         />
@@ -176,6 +184,7 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
                   {...field}
                 />
               </FormControl>
+              <FormMessage />
             </FormItem>
           )}
         />
@@ -196,6 +205,7 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
                   account-form_input"
                 />
               </FormControl>
+              <FormMessage />
             </FormItem>
           )}
         />
