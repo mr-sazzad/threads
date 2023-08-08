@@ -28,6 +28,7 @@ zod
 ```ts
 // app/utils/uploadthing.ts 🥗
 
+
 import { generateReactHelpers } from "@uploadthing/react/hooks";
  
 import type { OurFileRouter } from "~/app/api/uploadthing/core";
@@ -39,6 +40,7 @@ generateReactHelpers<OurFileRouter>();
 
 ```ts
 // app/api/uploadthing/core.ts 🥗
+
 
 import { createUploadthing, type FileRouter } from "uploadthing/next";
  
