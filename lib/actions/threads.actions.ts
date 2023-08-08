@@ -38,12 +38,14 @@ export async function CreateThread({
   }
 }
 
-export async function fetchThreads(pageNumber = 1, pageSize = 20) {
+export async function fetchPosts(pageNumber = 1, pageSize = 20) {
   connectToDB();
 
   const skip = (pageNumber - 1) * pageSize;
 
-  const threads = Thread.find({ parentId: { $in: [null, undefined] } })
+  const postQuery = Thread.find({
+    parentId: { $in: [null, undefined] },
+  })
     .sort({ createdAt: "desc" })
     .skip(skip)
     .limit(pageSize)
@@ -53,7 +55,16 @@ export async function fetchThreads(pageNumber = 1, pageSize = 20) {
       populate: {
         path: "author",
         model: User,
-        select: "_id name parentID image",
+        select: "_id name parentId image",
       },
     });
+
+  const totalPostsCount = await Thread.countDocuments({
+    parentId: { $in: [null, undefined] },
+  });
+
+  const posts = await postQuery.exec();
+
+  const isNext = totalPostsCount > skip + posts.length;
+  return { posts, isNext };
 }
