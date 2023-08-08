@@ -23,8 +23,8 @@ react-hook-form
 zod
 
 ```
-```css
-UPLOADTHING IMAGE UPLOAD PART
+```HTML
+<p class=""center>UPLOADTHING IMAGE UPLOAD PART</p>
 ```
 
 
