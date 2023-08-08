@@ -23,8 +23,9 @@ react-hook-form
 zod
 
 ```
-
- <p align="center">- 🌱 UPLOADTHING IMAGE UPLOAD PART</p>
+```js
+ <p align="center">- 🌱 UPLOADTHING IMAGE UPLOAD PART 🌱 -</p>
+```
 
 
 
