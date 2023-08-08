@@ -23,9 +23,9 @@ react-hook-form
 zod
 
 ```
-```HTML
-<p class=""center>UPLOADTHING IMAGE UPLOAD PART</p>
-```
+
+<p class="center">UPLOADTHING IMAGE UPLOAD PART</p>
+
 
 
 ```ts
