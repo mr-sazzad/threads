@@ -12,7 +12,9 @@ import { Form, FormControl, FormField, FormItem, FormLabel } from "../ui/form";
 import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
 
+import { updateUser } from "@/lib/actions/user.actions";
 import { useUploadThing } from "@/lib/uploadthing";
+import { usePathname, useRouter } from "next/navigation";
 
 interface Props {
   user: {
@@ -29,6 +31,9 @@ interface Props {
 const AccountProfile = ({ user, btnTitle }: Props) => {
   const [files, setFiles] = useState<File[]>([]);
   const { startUpload } = useUploadThing("media");
+
+  const pathname = usePathname();
+  const router = useRouter();
 
   const form = useForm<z.infer<typeof UserValidation>>({
     resolver: zodResolver(UserValidation),
@@ -75,6 +80,20 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
       if (imageRes && imageRes[0].fileUrl) {
         values.profile_photo = imageRes[0].fileUrl;
       }
+    }
+
+    await updateUser({
+      username: values.userName,
+      name: values.name,
+      bio: values.bio,
+      image: values.profile_photo,
+      userId: user.id,
+      path: pathname,
+    });
+    if (pathname === "/profile/edit") {
+      router.back();
+    } else {
+      router.push("/");
     }
   };
 
