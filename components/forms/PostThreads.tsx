@@ -1,8 +1,12 @@
 "use client";
 
+import { useOrganization } from "@clerk/nextjs";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { usePathname, useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
-import { Button } from "../ui/button";
+import * as z from "zod";
+
+import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -10,19 +14,22 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "../ui/form";
-import { Textarea } from "../ui/textarea";
-
-import { CreateThread } from "@/lib/actions/threads.actions";
+} from "@/components/ui/form";
+import { Textarea } from "@/components/ui/textarea";
+import { createThread } from "@/lib/actions/threads.actions";
 import { ThreadsValidation } from "@/lib/validations/threads";
-import { usePathname, useRouter } from "next/navigation";
-import * as z from "zod";
 
-export const PostThreads = ({ userId }: { userId: string }) => {
-  const pathname = usePathname();
+interface Props {
+  userId: string;
+}
+
+function PostThread({ userId }: Props) {
   const router = useRouter();
+  const pathname = usePathname();
 
-  const form = useForm({
+  const { organization } = useOrganization();
+
+  const form = useForm<z.infer<typeof ThreadsValidation>>({
     resolver: zodResolver(ThreadsValidation),
     defaultValues: {
       thread: "",
@@ -31,10 +38,10 @@ export const PostThreads = ({ userId }: { userId: string }) => {
   });
 
   const onSubmit = async (values: z.infer<typeof ThreadsValidation>) => {
-    await CreateThread({
+    await createThread({
       text: values.thread,
       author: userId,
-      communityId: null,
+      communityId: organization ? organization.id : null,
       path: pathname,
     });
 
@@ -44,35 +51,31 @@ export const PostThreads = ({ userId }: { userId: string }) => {
   return (
     <Form {...form}>
       <form
+        className="mt-10 flex flex-col justify-start gap-10"
         onSubmit={form.handleSubmit(onSubmit)}
-        className="flex flex-col justify-start gap-10"
       >
         <FormField
           control={form.control}
           name="thread"
           render={({ field }) => (
-            <FormItem className="flex flex-col justify-start gap-3 w-full mt-10">
+            <FormItem className="flex w-full flex-col gap-3">
               <FormLabel className="text-base-semibold text-light-2">
                 Content
               </FormLabel>
-
               <FormControl className="no-focus border border-dark-4 bg-dark-3 text-light-1">
-                <Textarea
-                  rows={10}
-                  cols={30}
-                  className="account-form_input no-focus"
-                  {...field}
-                />
+                <Textarea rows={15} {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
 
-        <Button type="submit" className="bg-primary-500 text-gray-200 w-full">
+        <Button type="submit" className="bg-primary-500">
           Post Thread
         </Button>
       </form>
     </Form>
   );
-};
+}
+
+export default PostThread;

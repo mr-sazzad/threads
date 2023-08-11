@@ -1,26 +1,22 @@
-import { PostThreads } from "@/components/forms/PostThreads";
-import { fetchUser } from "@/lib/actions/user.actions";
 import { currentUser } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 
+import PostThread from "@/components/forms/PostThreads";
+import { fetchUser } from "@/lib/actions/user.actions";
+
 async function Page() {
   const user = await currentUser();
+  if (!user) return null;
 
-  if (!user) {
-    return null;
-  }
-
+  // fetch organization list created by user
   const userInfo = await fetchUser(user.id);
-
-  if (!userInfo?.onboarded) {
-    redirect("/onboarding");
-  }
+  if (!userInfo?.onboarded) redirect("/onboarding");
 
   return (
     <>
-      <h1 className="head-text">Create Threads</h1>
+      <h1 className="head-text">Create Thread</h1>
 
-      <PostThreads userId={userInfo._id} />
+      <PostThread userId={userInfo._id} />
     </>
   );
 }
